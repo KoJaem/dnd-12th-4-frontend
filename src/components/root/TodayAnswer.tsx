@@ -18,7 +18,7 @@ export default function TodayAnswer() {
     <article className="flex flex-col gap-[12px]">
       <TitleWithMoreView
         title="오늘 응답"
-        countTitle={`${data?.body?.answerList?.length}개`}
+        countTitle={`${data?.body?.answerList?.length || 0}개`}
         onClick={() => {
           router.push(`/${id}/questions`)
         }}
