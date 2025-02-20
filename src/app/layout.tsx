@@ -24,14 +24,12 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/logo/picki_talki_logo_on_white.png",
-        alt: "Picki-Talki OG Image",
-        width: 940,
-        height: 194
+        alt: "Picki-Talki OG Image"
       }
     ],
-    url: "https://dnd-12th-4-frontend.vercel.app"
+    url: "https://picki-talki.site"
   },
-  metadataBase: new URL("https://dnd-12th-4-frontend.vercel.app")
+  metadataBase: new URL("https://picki-talki.site")
 }
 
 export default async function RootLayout({
