@@ -2,7 +2,7 @@
 
 import { useShowAnswers } from "@/api/answer-controller/answer-controller"
 import { useFindTodayQuestionByChannel } from "@/api/question-controller/question-controller"
-import "@/styles/todayAnswerSlider.css"
+import "@/styles/sliderBullet.css"
 import Image from "next/image"
 import { useParams } from "next/navigation"
 import "swiper/css"

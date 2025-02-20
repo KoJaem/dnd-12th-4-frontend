@@ -13,7 +13,8 @@ export default function TitleWithMoreView({ title, countTitle, className, onClic
   return (
     <div className={cn("flex justify-between", className)}>
       <p className="text-subtitle-01">
-        {title} <span className="text-secondary-300">{countTitle}</span>
+        <span className="text-secondary-300">{countTitle}</span>
+        {title}
       </p>
       <button className="flex items-center justify-center text-body-04" onClick={onClick}>
         더보기 <ChevronRight size={24} />

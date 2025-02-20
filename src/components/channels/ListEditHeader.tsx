@@ -1,7 +1,7 @@
 "use client"
 
 import { useFindChannelsByRole } from "@/api/channel-controller/channel-controller"
-import { DeleteChannelType } from "@/validations/channelSchema"
+import { ChannelMemberDeleteRequest } from "@/api/model/channelMemberDeleteRequest"
 import { useFormContext } from "react-hook-form"
 
 interface Params {
@@ -10,17 +10,15 @@ interface Params {
 export default function ListEditHeader({ count }: Params) {
   const { data } = useFindChannelsByRole({ tab: "all" })
 
-  const { setValue } = useFormContext<DeleteChannelType>()
+  const { setValue } = useFormContext<ChannelMemberDeleteRequest>()
 
   const selectAll = () => {
     const allIds = data?.body?.channelShowResponse
       ?.map((data) => data.channelId)
       .filter((id): id is string => id !== undefined)
     if (allIds?.length === count) {
-      console.log("1")
       setValue("channelIds", [], { shouldValidate: true })
     } else {
-      console.log("2")
       setValue("channelIds", allIds ?? [], { shouldValidate: true })
     }
   }

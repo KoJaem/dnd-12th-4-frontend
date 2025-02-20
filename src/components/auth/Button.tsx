@@ -12,14 +12,14 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const buttonVariants = {
   default:
-    "cursor-pointer rounded-xl font-medium bg-[#FDD835] cursor-pointer hover:opacity-70 active:opacity-80 disabled:bg-[#ECF0F3] disabled:pointer-events-none",
+    "font-medium bg-primary cursor-pointer hover:opacity-70 active:opacity-80 disabled:bg-[#ECF0F3] disabled:pointer-events-none rounded-sm",
   kakao:
-    "mb-[12px] relative flex items-center justify-center rounded-xl bg-[#FEE500] hover:opacity-70 active:opacity-80 cursor-pointer"
+    "relative flex items-center justify-center rounded-xsm bg-primary-100 hover:opacity-70 active:opacity-80 cursor-pointer"
 }
 
 const buttonSizes = {
-  default: "h-[54px] w-full",
-  kakao: "h-[51.45px] w-full"
+  default: "h-[60px] w-full",
+  kakao: "h-[52px] w-full"
 }
 
 export default function Button({ variant, children, size, className, onNext, isSubmit, ...props }: ButtonProps) {

@@ -29,7 +29,7 @@ export default function FilterBottomSheet({ isOpen, setIsOpen }: Params) {
             <button
               className="w-full py-[24px] text-start"
               onClick={() => {
-                updateFilter("recent")
+                updateFilter("latest")
               }}
             >
               최신순
@@ -38,7 +38,7 @@ export default function FilterBottomSheet({ isOpen, setIsOpen }: Params) {
             <button
               className="w-full py-[24px] text-start"
               onClick={() => {
-                updateFilter("old")
+                updateFilter("oldest")
               }}
             >
               오래된 순

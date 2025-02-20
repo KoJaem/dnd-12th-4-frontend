@@ -2,12 +2,13 @@ module.exports = {
   petstore: {
     output: {
       mode: "tags-split",
-      target: "src/api/petstore.ts",
+      target: "src/api",
       schemas: "src/api/model",
       client: "react-query",
       httpClient: "axios",
       prettier: true,
       override: {
+        header: false,
         mutator: {
           path: "./src/api/clientInstance.ts",
           name: "customInstance"

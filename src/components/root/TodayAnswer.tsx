@@ -17,7 +17,7 @@ export default function TodayAnswer() {
   return (
     <article className="flex flex-col gap-[12px]">
       <TitleWithMoreView
-        title="오늘 응답"
+        title=" 의 응답이 있어요"
         countTitle={`${data?.body?.answerList?.length || 0}개`}
         onClick={() => {
           router.push(`/${id}/questions`)
@@ -31,9 +31,9 @@ export default function TodayAnswer() {
           )}
         </>
       ) : (
-        <section className="flex flex-col items-center justify-center gap-[20px] rounded-[20px] bg-gray-01 px-[20px] py-[24px]">
-          <Image src={"/favicon.ico"} width={80} height={80} alt="logo" />
-          <p className="text-body-03 text-emphasis-medium">아직 아무도 응답하지 않았어요</p>
+        <section className="flex flex-col items-center justify-center gap-[4px] rounded-[20px] bg-gray-01 px-[20px] py-[24px]">
+          <Image src={"/talki/webp/talki_empty.webp"} width={80} height={80} alt="logo" />
+          <p className="text-body-03 text-emphasis-medium">아직 응답이 없어요...</p>
         </section>
       )}
     </article>

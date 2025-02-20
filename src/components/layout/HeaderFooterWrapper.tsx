@@ -14,7 +14,7 @@ export default function HeaderFooterWrapper({ children, header, headerTitle, foo
   return (
     <>
       {header && <Header title={headerTitle} />}
-      <section className={cn(header && "pt-[56px]", footer && "pb-[80px]", "h-full w-full")}>
+      <section className={cn(header && "pt-[56px]", footer && "pb-[92px]", "h-full w-full")}>
         <section className="relative h-full w-full">{children}</section>
       </section>
       {footer && <Footer />}

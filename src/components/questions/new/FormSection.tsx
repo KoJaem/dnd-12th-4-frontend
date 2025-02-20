@@ -9,7 +9,7 @@ import RecommendQuestionBottomSheet from "@/components/questions/new/RecommendQu
 import "@/styles/bottomSheet.css"
 import { questionSchema } from "@/validations/questionSchema"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useParams } from "next/navigation"
+import { useParams, useRouter } from "next/navigation"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 
@@ -17,6 +17,7 @@ export default function FormSection() {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const { id } = useParams()
   const { mutateAsync } = useCreateQuestion()
+  const router = useRouter()
 
   const {
     handleSubmit,
@@ -32,7 +33,17 @@ export default function FormSection() {
   })
 
   const onSubmit = async (data: QuestionCreateRequest) => {
-    await mutateAsync({ channelId: id as string, data })
+    try {
+      const isAnonymous = data.isAnonymous
+      if (isAnonymous) {
+        await mutateAsync({ channelId: id as string, data: { ...data, anonymousName: "익명" } })
+      } else {
+        await mutateAsync({ channelId: id as string, data })
+      }
+      router.replace(`/${id}/questions`)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (

@@ -1,5 +1,10 @@
 import HeaderFooterWrapper from "@/components/layout/HeaderFooterWrapper"
 import FormSection from "@/components/questions/new/FormSection"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "시그널 작성"
+}
 
 export default function QuestionsNewPage() {
   return (

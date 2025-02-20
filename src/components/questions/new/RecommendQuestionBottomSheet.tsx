@@ -15,7 +15,7 @@ export default function RecommendQuestionBottomSheet({ isOpen, setIsOpen }: Para
   const [selectedIndex, setSelectedIndex] = useState<number>(0)
   const [selectedKey, setSelectedKey] = useState<keyof typeof category>("interest")
   const [indicatorLeft, setIndicatorLeft] = useState(0)
-  const [indicatorWidth, setIndicatorWidth] = useState(76)
+  const [indicatorWidth, setIndicatorWidth] = useState(105)
   const buttonsRef = useRef<(HTMLButtonElement | null)[]>([])
 
   useEffect(() => {

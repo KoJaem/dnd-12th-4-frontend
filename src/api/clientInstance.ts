@@ -55,9 +55,11 @@ clientInstance.interceptors.response.use(
   }
 )
 
-export const customInstance = async <T>(config: AxiosRequestConfig): Promise<T> => {
+export const customInstance = async <T>(config: AxiosRequestConfig, options?: AxiosRequestConfig): Promise<T> => {
   const source = axios.CancelToken.source()
-  const promise = clientInstance({ ...config, cancelToken: source.token }).then(({ data }: AxiosResponse<T>) => data)
+  const promise = clientInstance({ ...config, ...options, cancelToken: source.token }).then(
+    ({ data }: AxiosResponse<T>) => data
+  )
   // @ts-expect-error ...
   promise.cancel = () => {
     source.cancel("Query was cancelled")

@@ -1,6 +1,11 @@
 import HeaderFooterWrapper from "@/components/layout/HeaderFooterWrapper"
 import AnswerCardList from "@/components/my-page/answer/AnswerCardList"
 import CountAndSortBox from "@/components/my-page/CountAndSortBox"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "응답 목록"
+}
 
 export default async function AnswerListPage() {
   return (

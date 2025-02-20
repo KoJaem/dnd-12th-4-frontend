@@ -20,8 +20,6 @@ import { notFound } from "next/navigation"
 type Params = Promise<{ id: string }>
 
 export default async function RootPage({ params }: { params: Params }) {
-  // channelId: d4c98bce-9499-4809-bafa-0c75704f8f87
-
   const { id } = await params
 
   const queryClient = new QueryClient()
@@ -40,7 +38,7 @@ export default async function RootPage({ params }: { params: Params }) {
       if (!questionId) return
 
       await queryClient.prefetchQuery({
-        queryKey: getShowAnswersQueryKey(Number(questionId)), // Todo 백엔드 string 으로 수정
+        queryKey: getShowAnswersQueryKey(Number(questionId)),
         queryFn: async () => {
           const { data } = await serverInstance.get(`/api/answer/${questionId}`)
           return data

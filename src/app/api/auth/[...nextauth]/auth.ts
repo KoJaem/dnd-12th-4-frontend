@@ -21,10 +21,14 @@ const authOptions: AuthOptions = {
               "Content-Type": "application/json"
             }
           })
+
+          console.log("tokenData", tokenData.body.accessToken)
           token.expiredAccessToken = tokenData.body.expiredAccessToken
           token.accessToken = tokenData.body.accessToken
           token.refreshToken = tokenData.body.refreshToken
           token.userName = tokenData.body.userName
+          token.channelCount = tokenData.body.channelCount
+          token.channelId = tokenData.body.channelId
         } catch (error) {
           console.error("카카오 또는 DB 요청 실패:", error)
         }
@@ -57,7 +61,9 @@ const authOptions: AuthOptions = {
     session: async ({ session, token }: { session: Session; token: JWT }) => {
       session.user.accessToken = token.accessToken
       session.user.refreshToken = token.refreshToken
-      session.user.userName = token.userName as string | null
+      session.user.userName = token.userName
+      session.user.channelCount = token.channelCount
+      session.user.channelId = token.channelId
       return session
     }
   },
