@@ -3,10 +3,11 @@ import { useUpdateAnswer } from "@/api/answer-controller/answer-controller"
 import Button from "@/components/common/Button"
 import Textarea from "@/components/common/Textarea"
 import Toggle from "@/components/common/Toggle"
-import useAnswerStore from "@/stores/useAnswerStore"
+import { useAnswerStore } from "@/stores/useAnswerStore"
 import { replySchema } from "@/validations/replySchema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useParams, useRouter } from "next/navigation"
+import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 
@@ -14,21 +15,27 @@ export default function FormSection() {
   const router = useRouter()
   const params = useParams()
   const answerId = Number(params.replyId)
-  const { answer } = useAnswerStore()
+  const answer = useAnswerStore((state) => state.answer)
 
-  const { handleSubmit, setValue, watch } = useForm({
+  const {
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { isSubmitting }
+  } = useForm({
     defaultValues: {
-      question: answer as string,
+      answerForm: answer as string,
       isAnonymous: false
     },
     resolver: zodResolver(replySchema)
   })
-  const question = watch("question")
 
+  const currentAnswer = watch("answerForm")
   const { mutateAsync } = useUpdateAnswer()
+
   const onSubmit = async () => {
     try {
-      await mutateAsync({ answerId, data: { content: question } })
+      await mutateAsync({ answerId, data: { content: currentAnswer } })
       toast("응답을 수정했어요!")
       router.back()
     } catch (error) {
@@ -36,13 +43,19 @@ export default function FormSection() {
     }
   }
 
+  useEffect(() => {
+    if (answer) {
+      setValue("answerForm", answer)
+    }
+  }, [answer, setValue])
+
   return (
     <form className="mt-[12px] flex h-full w-full flex-col justify-between" onSubmit={handleSubmit(onSubmit)}>
       <section>
         <Textarea
           maxLength={500}
-          value={watch("question")}
-          onChange={(e) => setValue("question", e.target.value, { shouldValidate: true })}
+          value={watch("answerForm")}
+          onChange={(e) => setValue("answerForm", e.target.value, { shouldValidate: true })}
         />
         <div className="mt-[16px] flex justify-end">
           <Toggle
@@ -52,7 +65,11 @@ export default function FormSection() {
           />
         </div>
       </section>
-      <Button type="submit" className="w-full">
+      <Button
+        type="submit"
+        className="disabled w-full disabled:bg-gray-02 disabled:text-disabled"
+        disabled={isSubmitting || currentAnswer === answer || currentAnswer.length === 0}
+      >
         수정 완료
       </Button>
     </form>

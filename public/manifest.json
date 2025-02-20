@@ -1,0 +1,21 @@
+{
+  "name": "피키토키",
+  "short_name": "피키토키",
+  "description": "친구들과 우리만의 채널을 공유하고 소통해보세요!",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
+  "icons": [
+    {
+      "src": "/app-icons/picki_talki_app_icon_small.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/app-icons/picki_talki_app_icon_medium.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

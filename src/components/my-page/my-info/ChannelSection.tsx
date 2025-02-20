@@ -19,13 +19,13 @@ export default function ChannelSection() {
   const params = useParams()
   const { data: channelInfo } = useFindChannelById(params.id as string)
   const { data: userInfo } = useFindMyChannelMemberProfile(params.id as string)
-  const leaveChannelMutation = useLeaveOneChannel()
+  const { mutateAsync } = useLeaveOneChannel()
+
   const handleButtonClick = async () => {
     setIsDeleteModal(true)
     setIsOpenChannelSheet(false)
-
     try {
-      await leaveChannelMutation.mutateAsync({ channelId: channelInfo?.body?.channelId as string })
+      await mutateAsync({ channelId: params.id as string })
       router.push("/channels")
     } catch (error) {
       console.error(error)

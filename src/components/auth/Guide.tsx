@@ -21,7 +21,7 @@ function Guide({ title, onNext, nextPageUrl, buttonValue, imageUrl, unoptimized 
       onNext()
     }
     if (nextPageUrl) {
-      router.push(`/auth/initial/${nextPageUrl}`)
+      router.push(`/initial/${nextPageUrl}`)
     }
   }
 

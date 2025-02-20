@@ -1,24 +1,38 @@
-import type { Metadata } from "next"
-import "../styles/globals.css"
-import "../styles/reset.css"
+import { Toaster } from "@/components/common/sonner"
 import MobileViewLayout from "@/components/layout/MobileViewLayout"
 import { Pixel, Pretendard } from "@/fonts"
-import { authOptions } from "./api/auth/[...nextauth]/auth"
-import { getServerSession } from "next-auth"
 import { AuthProvider } from "@/providers/AuthProvider"
 import ReactQueryProvider from "@/providers/ReactQueryProvider"
-import { Toaster } from "@/components/common/sonner"
 import { cn } from "@/utils/cn"
+import type { Metadata } from "next"
+import { getServerSession } from "next-auth"
+import "../styles/globals.css"
+import "../styles/reset.css"
+import { authOptions } from "./api/auth/[...nextauth]/auth"
+
+const APP_NAME = "피키토키"
 
 export const metadata: Metadata = {
   title: {
-    default: "피키토키",
-    template: "피키토키 | %s"
+    default: APP_NAME,
+    template: `${APP_NAME} | %s`
   },
   description: "친구들과 우리만의 채널을 공유하고 소통해보세요!",
+  icons: {
+    shortcut: "/favicon.ico",
+    apple: [{ url: "/app-icons/picki_talki_app_icon_small.png", sizes: "192x192" }]
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: APP_NAME
+  },
+  formatDetection: {
+    telephone: false
+  },
   openGraph: {
-    siteName: "피키토키",
-    title: "피키토키",
+    siteName: APP_NAME,
+    title: APP_NAME,
     type: "website",
     description: "친구들과 우리만의 채널을 공유하고 소통해보세요!",
     images: [
@@ -27,9 +41,10 @@ export const metadata: Metadata = {
         alt: "Picki-Talki OG Image"
       }
     ],
-    url: "https://picki-talki.site"
+    url: "http://localhost:3000"
   },
-  metadataBase: new URL("https://picki-talki.site")
+  metadataBase: new URL("http://localhost:3000"),
+  manifest: "/manifest.json"
 }
 
 export default async function RootLayout({

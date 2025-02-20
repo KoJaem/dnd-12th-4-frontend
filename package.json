@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
+    "@serwist/next": "^9.0.11",
     "@tanstack/react-query": "^5.65.1",
     "@tanstack/react-query-devtools": "^5.66.0",
     "axios": "^1.7.9",
@@ -25,6 +26,7 @@
     "react-hook-form": "^7.54.2",
     "react-modal-sheet": "^4.0.1",
     "react-tooltip": "^5.28.0",
+    "serwist": "^9.0.11",
     "sonner": "^1.7.4",
     "swiper": "^11.2.2",
     "tailwind-merge": "^2.6.0",

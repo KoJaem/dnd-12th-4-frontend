@@ -34,7 +34,7 @@ export default function ModifyProfileForm({ profileType }: ModifyProfileFormProp
     register,
     handleSubmit,
     watch,
-    formState: { errors }
+    formState: { errors, isSubmitting }
   } = useForm<ModifyProfileType>({
     defaultValues: {
       nickname: defaultName,
@@ -111,7 +111,13 @@ export default function ModifyProfileForm({ profileType }: ModifyProfileFormProp
           </div>
         </div>
       </div>
-      <Button variant="default" size="default" isSubmit disabled={isButtonDisabled}>
+      <Button
+        variant="default"
+        size="default"
+        isSubmit
+        disabled={isSubmitting || isButtonDisabled}
+        className="disabled:text-disabled"
+      >
         완료
       </Button>
     </form>

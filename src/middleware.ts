@@ -5,12 +5,12 @@ export default async function middleware(request: NextRequest) {
   const token = await getToken({ req: request })
   const { pathname } = request.nextUrl
 
-  if (pathname === "/auth" || pathname === "/") {
+  if (pathname === "/") {
     return NextResponse.next()
   }
 
   if (!token) {
-    return NextResponse.redirect(new URL("/auth", request.url))
+    return NextResponse.redirect(new URL("/", request.url))
   }
 
   return NextResponse.next()

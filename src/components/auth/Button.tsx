@@ -12,7 +12,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const buttonVariants = {
   default:
-    "font-medium bg-primary cursor-pointer hover:opacity-70 active:opacity-80 disabled:bg-[#ECF0F3] disabled:pointer-events-none rounded-sm",
+    "font-medium bg-primary cursor-pointer hover:opacity-70 active:opacity-80 disabled:bg-[#ECF0F3] disabled:text-disabled disabled:pointer-events-none rounded-sm",
   kakao:
     "relative flex items-center justify-center rounded-xsm bg-primary-100 hover:opacity-70 active:opacity-80 cursor-pointer"
 }

@@ -2,13 +2,14 @@ import ModalWrapper from "@/components/common/ModalWrapper"
 import Button from "@/components/common/Button"
 
 interface Params {
+  type?: "answer"
   title: string
   description?: string
   onCancel: () => void
   onClick: () => void
   disabled?: boolean
 }
-export default function ConfirmModal({ title, description, onCancel, onClick, disabled = false }: Params) {
+export default function ConfirmModal({ type, title, description, onCancel, onClick, disabled = false }: Params) {
   console.log(disabled)
   return (
     <ModalWrapper overlayClose onClose={onCancel}>
@@ -28,7 +29,7 @@ export default function ConfirmModal({ title, description, onCancel, onClick, di
             className="flex h-[52px] w-full items-center justify-center bg-primary-200 text-body-01 text-emphasis-high"
             onClick={onClick}
           >
-            나갈래요
+            {type === "answer" ? "삭제하기" : "나갈래요"}
           </Button>
         </article>
       </section>

@@ -1,13 +1,20 @@
 import { create } from "zustand"
-
+import { persist, PersistOptions } from "zustand/middleware"
 interface AnswerState {
   answer: string | null
   setAnswer: (newAnswer: string) => void
 }
 
-const useAnswerStore = create<AnswerState>((set) => ({
-  answer: "",
-  setAnswer: (newAnswer) => set({ answer: newAnswer })
-}))
+type AnswerPersist = PersistOptions<AnswerState>
 
-export default useAnswerStore
+export const useAnswerStore = create(
+  persist(
+    (set) => ({
+      answer: "",
+      setAnswer: (newAnswer: string) => set({ answer: newAnswer })
+    }),
+    {
+      name: "answer-storage"
+    } as AnswerPersist
+  )
+)

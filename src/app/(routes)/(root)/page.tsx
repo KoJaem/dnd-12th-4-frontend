@@ -1,9 +1,39 @@
+import { authOptions } from "@/app/api/auth/[...nextauth]/auth"
+import { getServerSession } from "next-auth"
+import LoginButton from "@/components/auth/LoginButton"
+import CarouselItems from "@/components/auth/CarouselItems"
+import { redirect } from "next/navigation"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "홈"
+  title: "로그인"
 }
 
-export default function Home() {
-  return <p>홈화면</p>
+export default async function Auth() {
+  const session = await getServerSession(authOptions)
+  const { channelId, channelCount, userName } = session?.user || { channelId: "", channelCount: 0, userName: null }
+
+  if (session?.user.accessToken) {
+    if (!userName) {
+      redirect("/initial")
+    }
+    if (channelCount > 1) {
+      redirect("/channels")
+    }
+    if (channelCount === 1) {
+      redirect(`/${channelId}`)
+    }
+    if (channelCount === 0) {
+      redirect("/initial/create-or-join")
+    }
+  }
+
+  return (
+    <div className="flex h-full justify-center pb-[12px] pt-[56px]">
+      <section className="flex w-full flex-col items-center justify-between px-[16px]">
+        <CarouselItems />
+        <LoginButton />
+      </section>
+    </div>
+  )
 }
