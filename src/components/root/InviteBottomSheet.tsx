@@ -18,8 +18,7 @@ export default function InviteBottomSheet({ isOpen, setIsOpen, channelRoomName, 
     const shareData: ShareAPIRequest = {
       title: `피키토키에 초대합니다`,
       text: `${channelRoomName} 채널에서 친구가 기다리고 있어요!\n초대코드: ${inviteCode}`,
-      // Todo 데이터 알맞게 수정
-      url: "https://dnd.ac"
+      url: "https://picki-talki.site"
     }
     share(shareData)
   }

@@ -34,7 +34,7 @@ export default function ChannelSection() {
 
   return (
     <>
-      <section className="flex flex-col gap-[20px]">
+      <div className="flex flex-col gap-[20px]">
         <CurrentChannelBox
           key={channelInfo?.body?.channelId}
           count={channelInfo?.body?.signalCount || 0}
@@ -43,7 +43,7 @@ export default function ChannelSection() {
           owner={channelInfo?.body?.channelOwnerName ?? "-"}
           onClick={() => setIsOpenChannelSheet(true)}
         />
-      </section>
+      </div>
       <ChannelEditBottomSheet
         isOpen={isOpenChannelSheet}
         setIsOpen={setIsOpenChannelSheet}

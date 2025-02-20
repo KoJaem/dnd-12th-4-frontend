@@ -90,6 +90,8 @@ export default function ChannelsPageClient({ isFooter = false }: Params) {
               <ChannelBoxForm
                 key={data.channelId}
                 channelId={data.channelId as string}
+                channelRoomName={data.channelRoomName ?? ""}
+                inviteCode={data.inviteCode ?? ""}
                 questionCount={data.signalCount || 0}
                 name={data.channelRoomName ?? "-"}
                 memberCount={data?.countPerson || 1}

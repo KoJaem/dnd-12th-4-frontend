@@ -13,6 +13,8 @@ interface Params {
   name: string
   memberCount: number
   owner: string
+  channelRoomName: string
+  inviteCode: string
   selected?: boolean
   editMode?: boolean
 }
@@ -22,6 +24,8 @@ export default function ChannelBoxForm({
   name,
   memberCount,
   // owner, // Todo 추 후 필요없는게 확실해지면 props 제거
+  channelRoomName,
+  inviteCode,
   editMode = false,
   selected = false
 }: Params) {
@@ -42,10 +46,9 @@ export default function ChannelBoxForm({
   const handleShare = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()
     const shareData: ShareAPIRequest = {
-      // Todo 데이터 알맞게 수정
-      title: "DND",
-      text: "DND-12-4팀",
-      url: "https://dnd.ac"
+      title: `피키토키에 초대합니다`,
+      text: `${channelRoomName} 채널에서 친구가 기다리고 있어요!\n초대코드: ${inviteCode}`,
+      url: "https://picki-talki.site"
     }
     share(shareData)
   }

@@ -1,33 +1,46 @@
 "use client"
 import ConfirmModal from "@/components/common/ConfirmModal"
 import { cn } from "@/utils/cn"
-
+import useAnswerStore from "@/stores/useAnswerStore"
 import Image from "next/image"
-import Link from "next/link"
 import { useState } from "react"
 import { toast } from "sonner"
+import { useRouter } from "next/navigation"
 
 interface QuestionOrAnswerDetailBoxProps {
   type: "question" | "answer"
+  channelId?: string
+  questionId?: number
+  answerId?: number
   imageSrc: string
   content: string
   nickname: string
-  time: number
+  time: string
   isMyAnswer?: boolean
 }
 export default function QuestionOrAnswerDetailBox({
   type,
+  channelId,
+  answerId,
+  questionId,
   imageSrc,
   content,
   nickname,
   time,
   isMyAnswer
 }: QuestionOrAnswerDetailBoxProps) {
+  const router = useRouter()
   const [isDeleteModal, setIsDeleteModal] = useState(false)
+  const setAnswer = useAnswerStore((state) => state.setAnswer)
 
   const handleDeleteButtonClick = () => {
     setIsDeleteModal(false)
     toast("응답을 삭제했어요!")
+  }
+
+  const handleEditButtonClick = () => {
+    setAnswer(content)
+    router.push(`/${channelId}/questions/${questionId}/reply/${answerId}/modify`)
   }
 
   return (
@@ -43,9 +56,9 @@ export default function QuestionOrAnswerDetailBox({
 
       {isMyAnswer && (
         <div className="flex justify-end gap-[12px] text-[12px] text-black/60">
-          <Link type="button" href={"/2/questions/2/reply/2/modify"}>
+          <button type="button" onClick={handleEditButtonClick}>
             수정
-          </Link>
+          </button>
           <button type="button" onClick={() => setIsDeleteModal(true)}>
             삭제
           </button>

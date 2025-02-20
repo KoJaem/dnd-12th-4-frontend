@@ -1,28 +1,36 @@
 "use client"
 
-import { useFindQuestionsByMember } from "@/api/question-controller/question-controller"
+import { useFindQuestionsByChannel } from "@/api/question-controller/question-controller"
 import QuestionBox from "./QuestionBox"
-import { useSearchParams } from "next/navigation"
+import { useParams, useSearchParams } from "next/navigation"
+import CountAndSortBox from "@/components/my-page/CountAndSortBox"
 
 export default function QuestionBoxSection() {
+  const params = useParams()
   const searchParams = useSearchParams()
-  const sort = searchParams.get("sort")
-  const { data: latestData } = useFindQuestionsByMember({ sort: "latest" })
-  const { data: oldestData } = useFindQuestionsByMember({ sort: "oldest" })
-  const data = sort === "latest" ? latestData : oldestData
-  console.log(data)
+  const sort = searchParams.get("sort") || "latest"
+  const tab = searchParams.get("tab") || "all"
+  const channelId = params.id as string
+  const { data } = useFindQuestionsByChannel(channelId, { tab, sort })
+
+  const questionLength = Number(data?.questionResponse?.length)
+
   return (
     <section>
-      {data?.questionResponse?.map((questionData) => (
-        <QuestionBox
-          key={`${questionData.createdAt}-${questionData.writerName}`}
-          signalNumber={questionData.signalNumber || 1}
-          nickname={questionData.writerName || ""}
-          time={questionData.createdAt || ""}
-          content={questionData.content || ""}
-          replyCount={questionData.replyCount || 1}
-        />
-      ))}
+      <CountAndSortBox type="시그널" count={questionLength || 0} />
+      <ul>
+        {data?.questionResponse?.map((questionData) => (
+          <QuestionBox
+            key={questionData.questionId}
+            id={questionData.questionId || 1}
+            signalNumber={questionData.signalNumber || 1}
+            nickname={questionData.writerName || ""}
+            time={questionData.createdAt || ""}
+            content={questionData.content || ""}
+            replyCount={questionData.replyCount || 0}
+          />
+        ))}
+      </ul>
     </section>
   )
 }

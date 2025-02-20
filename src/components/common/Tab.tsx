@@ -7,14 +7,14 @@ interface TabProps {
 }
 export default function Tab({ label, isActive, onClick }: TabProps) {
   return (
-    <section
+    <button
       className={cn(
-        "cursor-pointer rounded-[100px] bg-gray-01 px-[12px] py-[6px] text-body-04 text-emphasis-medium",
+        "cursor-pointer rounded-[100px] bg-gray-01 px-[12px] py-[8px] text-body-04 text-emphasis-medium",
         isActive && "bg-gray-08 text-white"
       )}
       onClick={onClick}
     >
       {label}
-    </section>
+    </button>
   )
 }

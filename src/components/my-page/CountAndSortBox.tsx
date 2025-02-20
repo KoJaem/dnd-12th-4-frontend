@@ -16,7 +16,7 @@ export default function CountAndSortBox({ type, count, className }: CountAndSort
   const [isOpenFilterSheet, setIsOpenFilterSheet] = useState(false)
 
   return (
-    <div className="flex justify-between py-[12px]">
+    <section className="flex justify-between py-[12px]">
       <div className={cn("flex items-center gap-[4px] text-body-03 text-emphasis-high", className)}>
         <div>{type}</div>
         <div className="text-secondary-300">{count}</div>
@@ -26,6 +26,6 @@ export default function CountAndSortBox({ type, count, className }: CountAndSort
         <ChevronDown size={12} />
       </button>
       <FilterBottomSheet isOpen={isOpenFilterSheet} setIsOpen={setIsOpenFilterSheet} />
-    </div>
+    </section>
   )
 }

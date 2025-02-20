@@ -6,20 +6,21 @@ import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 
 interface QuestionBoxProps {
+  id: number
   signalNumber: number
   replyCount: number
   nickname: string
   time: string
   content: string
 }
-export default function QuestionBox({ signalNumber, replyCount, nickname, time, content }: QuestionBoxProps) {
+export default function QuestionBox({ id, signalNumber, replyCount, nickname, time, content }: QuestionBoxProps) {
   const searchParams = useSearchParams()
   const tab = searchParams.get("tab")
 
   return (
-    <>
+    <section>
       <Link
-        href={`questions/${2}/detail`}
+        href={`questions/${id}/detail`}
         className="flex cursor-pointer flex-col gap-[12px] rounded-[24px] bg-[#F5F8FA] px-[20px] py-[24px]"
       >
         <p className="inline-block w-fit rounded-[40px] bg-secondary-0 px-[12px] py-[4px] text-[12px] font-medium text-secondary-300">
@@ -40,6 +41,6 @@ export default function QuestionBox({ signalNumber, replyCount, nickname, time, 
         </div>
       </Link>
       <div className="mb-[12px]" />
-    </>
+    </section>
   )
 }

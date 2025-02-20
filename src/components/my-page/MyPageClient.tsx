@@ -11,7 +11,7 @@ export default function MyPageClient() {
   const [isOpenChannelSheet, setIsOpenChannelSheet] = useState(false)
   return (
     <>
-      <div className="px-[16px]">
+      <main className="px-[16px]">
         <MenuHeader title="내 정보" />
         <div className="flex flex-col gap-[20px]">
           <ProfileCard />
@@ -28,7 +28,7 @@ export default function MyPageClient() {
             <ChannelSection />
           </div>
         </div>
-      </div>
+      </main>
       <ChannelBottomSheet isOpen={isOpenChannelSheet} setIsOpen={setIsOpenChannelSheet} />
     </>
   )

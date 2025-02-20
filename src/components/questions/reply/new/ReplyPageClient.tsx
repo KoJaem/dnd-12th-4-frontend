@@ -13,11 +13,11 @@ export default function ReplyPageClient() {
   return (
     <section className="flex h-full flex-col items-center px-[16px] pb-[12px]">
       <QuestionBox
-        count={data?.signalNumber}
-        replyCount={data?.replyCount}
-        date={dayjs.utc(data?.createdAt).toDate()}
+        count={data?.questionResponse?.signalNumber}
+        replyCount={data?.questionResponse?.replyCount}
+        date={dayjs.utc(data?.questionResponse?.createdAt).toDate()}
         nickname="닉네임"
-        text={data?.content ?? ""}
+        text={data?.questionResponse?.content ?? ""}
       />
       <FormSection />
     </section>

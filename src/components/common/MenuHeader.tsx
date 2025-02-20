@@ -20,8 +20,8 @@ export default function MenuHeader({
   titleClassName
 }: MenuHeaderProps) {
   return (
-    <div className="flex h-[56px] items-center justify-between py-[12px]">
-      <div className={cn("text-headline-02 font-bold", titleClassName)}>{title}</div>
+    <header className="flex h-[56px] items-center justify-between py-[12px]">
+      <h2 className={cn("text-headline-02 font-bold", titleClassName)}>{title}</h2>
       {button && (
         <button
           className={cn("rounded-[8px] bg-gray-03 px-[12px] py-[4px] text-caption-01", buttonClassName)}
@@ -31,6 +31,6 @@ export default function MenuHeader({
           {buttonTitle}
         </button>
       )}
-    </div>
+    </header>
   )
 }

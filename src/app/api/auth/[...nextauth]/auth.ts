@@ -13,7 +13,6 @@ const authOptions: AuthOptions = {
   callbacks: {
     jwt: async ({ token, account }) => {
       if (account) {
-        token.accessToken = account.access_token
         try {
           const { data: tokenData } = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/kakao/exchange`, {
             headers: {

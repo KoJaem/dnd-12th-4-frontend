@@ -20,11 +20,11 @@ export default function QuestionCheckPageClient() {
           시그널이 도착했어요!
         </p>
         <QuestionBox
-          count={data?.signalNumber || 1}
-          replyCount={data?.replyCount}
-          date={dayjs.utc(data?.createdAt).toDate()}
+          count={data?.questionResponse?.signalNumber || 1}
+          replyCount={data?.questionResponse?.replyCount}
+          date={dayjs.utc(data?.questionResponse?.createdAt).toDate()}
           nickname="닉네임"
-          text={data?.content ?? ""}
+          text={data?.questionResponse?.content ?? ""}
         />
       </div>
       <div className="flex h-full w-full items-end justify-center gap-[12px]">

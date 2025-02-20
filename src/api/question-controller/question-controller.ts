@@ -17,7 +17,7 @@ import type {
   FindQuestionsByMemberParams,
   QuestionCreateRequest,
   QuestionCreateResponse,
-  QuestionResponse,
+  QuestionOneResponse,
   QuestionShowAllResponse,
   QuestionUpdateRequest,
   QuestionUpdateResponse,
@@ -34,7 +34,7 @@ export const findQuestionsByQuestionId = (
   options?: SecondParameter<typeof customInstance>,
   signal?: AbortSignal
 ) => {
-  return customInstance<QuestionResponse>(
+  return customInstance<QuestionOneResponse>(
     { url: `/api/channels/${channelId}/questions/${questionId}`, method: "GET", signal },
     options
   )
