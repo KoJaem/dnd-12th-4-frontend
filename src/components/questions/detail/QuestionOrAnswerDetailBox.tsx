@@ -7,6 +7,7 @@ import { toast } from "sonner"
 import { useRouter } from "next/navigation"
 import { useDeleteAnswer } from "@/api/answer-controller/answer-controller"
 import { useAnswerStore } from "@/stores/useAnswerStore"
+import { kstToYYYYMMDD } from "@/utils/kstToYYYYMMDD"
 
 interface QuestionOrAnswerDetailBoxProps {
   type: "question" | "answer"
@@ -57,7 +58,7 @@ export default function QuestionOrAnswerDetailBox({
         <Image src={imageSrc} className="rounded-full object-cover" width={32} height={32} alt="프로필 이미지" />
         <div className="flex flex-col">
           <div className="text-body-03 text-emphasis-high">{nickname}</div>
-          <div className="text-caption-02 text-emphasis-medium">{time}시간 전</div>
+          <div className="text-caption-02 text-emphasis-medium">{kstToYYYYMMDD(time)}</div>
         </div>
       </div>
       <p className={cn("text-body-02 text-emphasis-high", type === "answer" && "text-body-04")}>{content}</p>

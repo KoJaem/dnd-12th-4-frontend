@@ -1,6 +1,6 @@
 "use client"
 
-import { formatUtcToKstWithRelativeTime } from "@/utils/formatUtcToKstWithRelativeTime"
+import { kstToYYYYMMDD } from "@/utils/kstToYYYYMMDD"
 import Image from "next/image"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
@@ -30,7 +30,7 @@ export default function QuestionBox({ id, signalNumber, replyCount, nickname, ti
         <div className="flex text-[12px] text-caption-02 text-emphasis-medium">
           <div className="flex flex-1 items-center gap-[12px]">
             {tab !== "my-signal" && <p>{nickname}</p>}
-            <p>{formatUtcToKstWithRelativeTime(time)}</p>
+            <p>{kstToYYYYMMDD(time)}</p>
             {/* <p>{time}시간 전</p> */}
           </div>
           <div className="flex items-center gap-[4px]">

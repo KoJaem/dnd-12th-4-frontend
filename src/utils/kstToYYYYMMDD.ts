@@ -1,8 +1,8 @@
 import { dayjsWithExtends as dayjs } from "@/utils/dayjsWithExtends"
 
-export const formatUtcToKstWithRelativeTime = (utcTime: Date | string): string => {
-  const kstTime = dayjs.utc(utcTime).tz("Asia/Seoul")
-  const now = dayjs().tz("Asia/Seoul")
+export const kstToYYYYMMDD = (time: Date | string): string => {
+  const kstTime = dayjs(time).tz("Asia/Seoul", true)
+  const now = dayjs()
 
   const diffInMinutes = now.diff(kstTime, "minute")
   const diffInHours = now.diff(kstTime, "hour")

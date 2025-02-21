@@ -22,7 +22,7 @@ export default function QuestionCheckPageClient() {
         <QuestionBox
           count={data?.questionResponse?.signalNumber || 1}
           replyCount={data?.questionResponse?.replyCount}
-          date={dayjs.utc(data?.questionResponse?.createdAt).toDate()}
+          date={dayjs(data?.questionResponse?.createdAt).toDate()}
           nickname="닉네임"
           text={data?.questionResponse?.content ?? ""}
         />

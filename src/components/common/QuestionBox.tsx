@@ -2,7 +2,7 @@
 
 import Tag from "@/components/common/Tag"
 import { cn } from "@/utils/cn"
-import { formatUtcToKstWithRelativeTime } from "@/utils/formatUtcToKstWithRelativeTime"
+import { kstToYYYYMMDD } from "@/utils/kstToYYYYMMDD"
 
 interface Params {
   count?: number
@@ -24,7 +24,7 @@ export default function QuestionBox({ count = 1, replyCount = 0, date, nickname 
       <p className="w-full bg-inherit text-body-04 text-emphasis-high">{text}</p>
       <div className="flex gap-[12px] text-caption-02 text-emphasis-medium">
         <p>{nickname}</p>
-        {date && <p>{formatUtcToKstWithRelativeTime(date)}</p>}
+        {date && <p>{kstToYYYYMMDD(date)}</p>}
       </div>
     </section>
   )
