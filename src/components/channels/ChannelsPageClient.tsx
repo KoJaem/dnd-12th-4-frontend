@@ -54,7 +54,6 @@ export default function ChannelsPageClient({ isFooter = false }: Params) {
   const onSubmit = async (data: FieldValues) => {
     try {
       await mutateAsync({ data })
-      // await queryClient.invalidateQueries({ queryKey: ["/api/channels/channel-profile"] })
       formMethods.reset()
       await refetch()
       setIsDeleteModal(false)
