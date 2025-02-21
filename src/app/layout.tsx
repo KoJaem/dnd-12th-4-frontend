@@ -41,9 +41,9 @@ export const metadata: Metadata = {
         alt: "Picki-Talki OG Image"
       }
     ],
-    url: "http://localhost:3000"
+    url: "https://picki-talki.site"
   },
-  metadataBase: new URL("http://localhost:3000"),
+  metadataBase: new URL("https://picki-talki.site"),
   manifest: "/manifest.json"
 }
 
