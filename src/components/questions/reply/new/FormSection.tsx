@@ -1,11 +1,12 @@
 "use client"
-import { useWriteAnswer } from "@/api/answer-controller/answer-controller"
+import { getShowAnswersQueryKey, useWriteAnswer } from "@/api/answer-controller/answer-controller"
 import { AnswerRequest } from "@/api/model/answerRequest"
 import Button from "@/components/common/Button"
 import Textarea from "@/components/common/Textarea"
 import Toggle from "@/components/common/Toggle"
 import { replySchema } from "@/validations/replySchema"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useQueryClient } from "@tanstack/react-query"
 import { useParams, useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
@@ -28,6 +29,8 @@ export default function FormSection() {
 
   const { mutateAsync } = useWriteAnswer()
 
+  const queryClient = useQueryClient()
+
   const onSubmit = async (data: AnswerRequest) => {
     try {
       const isAnonymous = data.isAnonymous
@@ -36,6 +39,8 @@ export default function FormSection() {
       } else {
         await mutateAsync({ questionId: Number(questionId), data })
       }
+      await queryClient.invalidateQueries({ queryKey: getShowAnswersQueryKey(Number(questionId)) })
+
       toast("응답을 보냈어요!")
       router.replace(`/${id}/questions/${questionId}/detail`)
     } catch (err) {

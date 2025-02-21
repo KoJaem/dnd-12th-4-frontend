@@ -12,7 +12,7 @@ export default function QuestionDetailSection() {
   const { data } = useFindQuestionsByQuestionId(channelId, questionId)
 
   const titleStatus = data?.hasMyAnswer
-    ? "응답을 보내셨네요. 정말 멋져요!"
+    ? "이미 응답을 보내셨네요. 정말 멋져요!"
     : data?.mySignal
       ? "시그널을 보내셨네요. 최고에요!"
       : data?.questionResponse?.replyCount === 0

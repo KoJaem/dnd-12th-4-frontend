@@ -1,10 +1,10 @@
 "use client"
 
-import React, { useState } from "react"
+import { useState } from "react"
+import ChannelBottomSheet from "../channels/ChannelBottomSheet"
 import MenuHeader from "../common/MenuHeader"
 import ChannelSection from "./my-info/ChannelSection"
 import ProfileCard from "./profile/ProfileCard"
-import ChannelBottomSheet from "../channels/ChannelBottomSheet"
 
 export default function MyPageClient() {
   const [isOpenChannelSheet, setIsOpenChannelSheet] = useState(false)
@@ -14,6 +14,7 @@ export default function MyPageClient() {
         <MenuHeader title="내 정보" />
         <div className="flex flex-col gap-[20px]">
           <ProfileCard />
+          {/* <FeedbackBox /> */}
           <div>
             <MenuHeader
               title="현재 속한 채널"
