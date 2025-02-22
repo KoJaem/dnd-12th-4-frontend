@@ -17,6 +17,7 @@ import { useRouter, useSearchParams } from "next/navigation"
 import { useState } from "react"
 import { FieldValues, FormProvider, useForm } from "react-hook-form"
 import ConfirmModal from "@/components/common/ConfirmModal"
+import { toast } from "sonner"
 
 const ListEditHeader = dynamic(() => import("@/components/channels/ListEditHeader"))
 const ChannelEditHeader = dynamic(() => import("@/components/channels/ChannelEditHeader"))
@@ -59,6 +60,7 @@ export default function ChannelsPageClient({ isFooter = false }: Params) {
       setIsDeleteModal(false)
       setEditMode(false)
     } catch (error) {
+      toast("오류가 발생했습니다!")
       console.log("error", error)
     }
   }

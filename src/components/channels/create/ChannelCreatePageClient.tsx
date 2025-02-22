@@ -11,6 +11,7 @@ import { useEffect, useState } from "react"
 import { FormProvider, useForm } from "react-hook-form"
 import CreateChannelNicknameSection from "@/components/auth/section/CreateChannelNicknameSection"
 import { useMakeChannel } from "@/api/channel-controller/channel-controller"
+import { toast } from "sonner"
 
 const steps = ["CreateChannelName", "ChannelNickname", "CreatedCode", "LaterInvitation"]
 
@@ -65,6 +66,7 @@ function ChannelCreatePageClient() {
       })
       onNext()
     } catch {
+      toast("오류가 발생했습니다!")
       console.error("에러 발생")
     }
   }

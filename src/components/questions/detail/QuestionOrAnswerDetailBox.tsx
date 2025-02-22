@@ -45,6 +45,7 @@ export default function QuestionOrAnswerDetailBox({
       setIsDeleteModal(false)
       toast("응답을 삭제했어요!")
     } catch (error) {
+      toast("오류가 발생했습니다!")
       console.error(error)
     }
   }

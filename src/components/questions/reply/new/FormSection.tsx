@@ -44,6 +44,7 @@ export default function FormSection() {
       toast("응답을 보냈어요!")
       router.replace(`/${id}/questions/${questionId}/detail`)
     } catch (err) {
+      toast("오류가 발생했습니다!")
       console.log(err)
     }
   }

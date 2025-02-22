@@ -10,6 +10,7 @@ import {
   useLeaveOneChannel
 } from "@/api/channel-member-controller/channel-member-controller"
 import ConfirmModal from "@/components/common/ConfirmModal"
+import { toast } from "sonner"
 
 export default function ChannelSection() {
   const router = useRouter()
@@ -28,6 +29,7 @@ export default function ChannelSection() {
       await mutateAsync({ channelId: params.id as string })
       router.push("/channels")
     } catch (error) {
+      toast("오류가 발생했습니다!")
       console.error(error)
     }
   }

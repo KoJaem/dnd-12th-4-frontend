@@ -12,6 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useParams, useRouter } from "next/navigation"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 
 export default function FormSection() {
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -43,6 +44,7 @@ export default function FormSection() {
       }
       router.replace(`/${id}/questions`)
     } catch (err) {
+      toast("오류가 발생했습니다!")
       console.log(err)
     }
   }

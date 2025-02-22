@@ -46,6 +46,7 @@ export default function FormSection() {
       toast("응답을 수정했어요!")
       router.back()
     } catch (error) {
+      toast("오류가 발생했습니다!")
       console.error(error)
     }
   }

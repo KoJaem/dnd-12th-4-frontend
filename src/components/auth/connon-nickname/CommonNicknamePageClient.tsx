@@ -7,6 +7,7 @@ import { createCommonNicknameSchema } from "@/validations/nicknameSchema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useState } from "react"
 import { FormProvider, useForm } from "react-hook-form"
+import { toast } from "sonner"
 
 function CommonNicknamePageClient() {
   const steps = ["CommonNickname", "GoodNickname"]
@@ -35,6 +36,7 @@ function CommonNicknamePageClient() {
       //api 요청 성공하면 onNext 실행
       onNext()
     } catch (error) {
+      toast("오류가 발생했습니다!")
       console.error("닉네임 등록 실패:", error)
     }
   }

@@ -48,6 +48,7 @@ export default function ModifyChannelNameForm() {
       toast("채널명 수정이 완료되었습니다.")
       router.back()
     } catch (error) {
+      toast("오류가 발생했습니다!")
       console.log("error", error)
     }
   }
