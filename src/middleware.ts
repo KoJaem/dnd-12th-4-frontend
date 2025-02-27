@@ -9,7 +9,7 @@ export default async function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  if (!token) {
+  if (!token || !token.expiredAccessToken || Math.floor(Date.now() / 1000) > token.expiredAccessToken) {
     return NextResponse.redirect(new URL("/", request.url))
   }
 

@@ -21,7 +21,6 @@ const authOptions: AuthOptions = {
             }
           })
 
-          console.log("tokenData", tokenData.body.accessToken)
           token.expiredAccessToken = tokenData.body.expiredAccessToken
           token.accessToken = tokenData.body.accessToken
           token.refreshToken = tokenData.body.refreshToken
@@ -32,11 +31,10 @@ const authOptions: AuthOptions = {
           console.error("카카오 또는 DB 요청 실패:", error)
         }
       }
-
       if (token.accessToken) {
         const currentTime = Math.floor(Date.now() / 1000)
         const tokenExpirationTime = Number(token.expiredAccessToken)
-        if (currentTime > tokenExpirationTime) {
+        if (currentTime >= tokenExpirationTime - 60) {
           try {
             const { data: refreshTokenData } = await axios.post(
               `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/refresh`,
@@ -50,19 +48,23 @@ const authOptions: AuthOptions = {
             )
             token.accessToken = refreshTokenData.body.accessToken
             token.expiredAccessToken = refreshTokenData.body.expiredAccessToken
+            token.refreshToken = refreshTokenData.body.refreshToken
           } catch (error) {
             console.error("refreshToken 요청 실패:", error)
+            return {} as JWT
           }
         }
       }
       return token
     },
     session: async ({ session, token }: { session: Session; token: JWT }) => {
+      if (!token) return session
       session.user.accessToken = token.accessToken
       session.user.refreshToken = token.refreshToken
       session.user.userName = token.userName
       session.user.channelCount = token.channelCount
       session.user.channelId = token.channelId
+
       return session
     }
   },
