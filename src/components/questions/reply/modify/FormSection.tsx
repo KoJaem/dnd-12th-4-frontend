@@ -1,12 +1,11 @@
 "use client"
-import { getShowAnswersQueryKey, useUpdateAnswer } from "@/api/answer-controller/answer-controller"
+import { useUpdateAnswer } from "@/api/answer-controller/answer-controller"
 import Button from "@/components/common/Button"
 import Textarea from "@/components/common/Textarea"
 import Toggle from "@/components/common/Toggle"
 import { useAnswerStore } from "@/stores/useAnswerStore"
 import { replySchema } from "@/validations/replySchema"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useQueryClient } from "@tanstack/react-query"
 import { useParams, useRouter } from "next/navigation"
 import { useEffect } from "react"
 import { useForm } from "react-hook-form"
@@ -17,9 +16,6 @@ export default function FormSection() {
   const params = useParams()
   const answerId = Number(params.replyId)
   const answer = useAnswerStore((state) => state.answer)
-
-  const { questionId } = params
-  const queryClient = useQueryClient()
 
   const {
     handleSubmit,
@@ -40,9 +36,6 @@ export default function FormSection() {
   const onSubmit = async () => {
     try {
       await mutateAsync({ answerId, data: { content: currentAnswer } })
-      await queryClient.invalidateQueries({
-        queryKey: getShowAnswersQueryKey(Number(questionId))
-      })
       toast("응답을 수정했어요!")
       router.back()
     } catch (error) {
