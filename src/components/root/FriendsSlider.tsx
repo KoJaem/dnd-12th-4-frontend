@@ -48,7 +48,7 @@ export default function FriendsSlider() {
                     src={member.profileImageUrl ?? "/"}
                     fill
                     alt="profile-image"
-                    className="rounded-full object-contain"
+                    className="rounded-full object-cover"
                   />
                 </div>
                 <p className="w-full overflow-hidden text-ellipsis text-nowrap text-caption-01 text-black/60">

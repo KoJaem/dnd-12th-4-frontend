@@ -1,7 +1,7 @@
 "use client"
 
 import { QuestionCreateRequest } from "@/api/model/questionCreateRequest"
-import { useCreateQuestion, useFindQuestionsByChannel } from "@/api/question-controller/question-controller"
+import { useCreateQuestion } from "@/api/question-controller/question-controller"
 import Button from "@/components/common/Button"
 import Textarea from "@/components/common/Textarea"
 import Toggle from "@/components/common/Toggle"
@@ -19,7 +19,6 @@ export default function FormSection() {
   const { id } = useParams()
   const { mutateAsync } = useCreateQuestion()
   const router = useRouter()
-  const { data: questionsData } = useFindQuestionsByChannel(id as string)
 
   const {
     handleSubmit,
@@ -48,12 +47,13 @@ export default function FormSection() {
       console.log(err)
     }
   }
+
   return (
     <>
       <section className="h-full w-full px-[16px] pb-[16px]">
         <form className="flex h-full flex-col gap-[12px]" onSubmit={handleSubmit(onSubmit)}>
           <Textarea
-            count={questionsData?.questionResponse?.length ?? 0}
+            count={2}
             date={new Date()}
             maxLength={100}
             value={watch("content")}

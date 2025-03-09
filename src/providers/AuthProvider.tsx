@@ -1,6 +1,5 @@
 "use client"
 
-import CheckAuth from "@/components/auth/CheckAuth"
 import { QueryClient } from "@tanstack/react-query"
 import { Session } from "next-auth"
 import { SessionProvider } from "next-auth/react"
@@ -12,10 +11,5 @@ interface ProvidersProps extends PropsWithChildren {
 }
 
 export const AuthProvider = ({ session, children }: ProvidersProps) => {
-  return (
-    <SessionProvider session={session}>
-      <CheckAuth />
-      {children}
-    </SessionProvider>
-  )
+  return <SessionProvider session={session}>{children}</SessionProvider>
 }

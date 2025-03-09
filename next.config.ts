@@ -25,6 +25,14 @@ const nextConfig: NextConfig = {
       {
         protocol: "http",
         hostname: "ec2-52-79-242-171.ap-northeast-2.compute.amazonaws.com"
+      },
+      {
+        protocol: "https",
+        hostname: "k.kakaocdn.net"
+      },
+      {
+        protocol: "http",
+        hostname: "k.kakaocdn.net"
       }
     ]
   }
