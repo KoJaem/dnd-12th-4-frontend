@@ -1,26 +1,22 @@
 "use client"
+import { useFindMyChannelMemberProfile } from "@/api/channel-member-controller/channel-member-controller"
+import { useFindMemberInfo } from "@/api/member-controller/member-controller"
 import Button from "@/components/auth/Button"
 import { ImageInput } from "@/components/my-page/profile/ImageInput"
 import { handleDeleteButton, handleImageChange } from "@/utils/changeImage"
+import { cn } from "@/utils/cn"
 import { modifyProfileSchema, ModifyProfileType } from "@/validations/profileSchema"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
-import { useFindMemberInfo } from "@/api/member-controller/member-controller"
-import { cn } from "@/utils/cn"
-import { zodResolver } from "@hookform/resolvers/zod"
-import {
-  useFindMyChannelMemberProfile,
-  useUpdateChannelMemberProfile
-} from "@/api/channel-member-controller/channel-member-controller"
-import { useParams, useRouter } from "next/navigation"
-import { useUpdateMemberProfile, useUploadProfileImage } from "@/api/profile-image-controller/profile-image-controller"
 import { toast } from "sonner"
 
 interface ModifyProfileFormProps {
   profileType: "common" | "channel"
 }
 export default function ModifyProfileForm({ profileType }: ModifyProfileFormProps) {
-  const router = useRouter()
+  // const router = useRouter()
   const params = useParams()
   const [file, setFile] = useState<File | null>(null)
   const [preview, setPreview] = useState("")
@@ -47,28 +43,30 @@ export default function ModifyProfileForm({ profileType }: ModifyProfileFormProp
   const nickname = watch("nickname")
   const profileImage = watch("profileImage")
 
-  const { mutateAsync: uploadImage } = useUploadProfileImage({
-    request: { headers: { "Content-Type": "multipart/form-data" } }
-  })
-  const { mutateAsync: updateCommonProfile } = useUpdateMemberProfile()
-  const { mutateAsync: updateChannelProfile } = useUpdateChannelMemberProfile()
+  // const { mutateAsync: uploadImage } = useUploadProfileImage({
+  //   request: { headers: { "Content-Type": "multipart/form-data" } }
+  // })
+  // const { mutateAsync: updateCommonProfile } = useUpdateMemberProfile()
+  // const { mutateAsync: updateChannelProfile } = useUpdateChannelMemberProfile()
 
   const onSubmit = async () => {
     try {
-      const uploadedImage = file ? await uploadImage({ data: { file } }) : null
-      const imageUrl = uploadedImage?.imageUrl || preview
+      // const uploadedImage = file ? await uploadImage({ data: { file } }) : null
+      // const imageUrl = uploadedImage?.imageUrl || preview
 
-      if (profileType === "common") {
-        await updateCommonProfile({
-          data: { nickName: nickname, image: imageUrl }
-        })
-      } else if (profileType === "channel") {
-        await updateChannelProfile({
-          channelId: params.id as string,
-          data: { codeName: nickname, image: imageUrl }
-        })
-      }
-      router.back()
+      // if (profileType === "common") {
+      //   await updateCommonProfile({
+      //     data: { nickName: nickname, image: imageUrl }
+      //   })
+      // } else if (profileType === "channel") {
+      //   await updateChannelProfile({
+      //     channelId: params.id as string,
+      //     data: { codeName: nickname, image: imageUrl }
+      //   })
+      // }
+      console.log(file)
+      toast("아직 구현되지 않은 기능입니다.")
+      // router.back()
     } catch (error) {
       toast("오류가 발생했습니다!")
       console.error("프로필 업데이트 실패:", error)
